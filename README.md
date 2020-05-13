@@ -33,14 +33,14 @@ Days to Hospital| normal(5,1)| [Ferguson et al](https://www.imperial.ac.uk/media
 Non-ICU Cases Days in Hospital |normal(7,1)|
 ICU Cases Days in Hospital | normal(16, 1)|
 Fraction Tested | normal(0.25, 0.025)|N/A|
-Fraction of moderate cases (Hospitalized but non-ICU) | Dirichlet with mean 0.07<sup>[1](#dirichletfoootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200)
-Fraction of severe cases (ICU and alive) | Dirichlet with mean 0.02<sup>[1](#dirichletfoootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
-Fraction of severe cases (ICU and dead) | Dirichlet with mean 0.01<sup>[1](#dirichletfoootnote)</sup> |[Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
-Fraction Asymptomatic cases | Dirichlet with mean 0.178<sup>[1](#dirichletfoootnote)</sup> |[Nishiura et al](https://www.ncbi.nlm.nih.gov/pubmed/32145466); [Mizumoto et al](https://www.eurosurveillance.org/content/10.2807/1560-7917.ES.2020.25.10.2000180#r13)|
-Fraction of mild cases (non-hospitalized) | Dirichlet with mean 1-sum(0.07, 0.02, 0.01, 0.178)<sup>[1](#dirichletfoootnote)</sup> | N/A|
+Fraction of moderate cases (Hospitalized but non-ICU) | Dirichlet with mean 0.07<sup>[\[1\]](#dirichletfoootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200)
+Fraction of severe cases (ICU and alive) | Dirichlet with mean 0.02<sup>[\[1\]](#dirichletfoootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
+Fraction of severe cases (ICU and dead) | Dirichlet with mean 0.01<sup>[\[1\]](#dirichletfoootnote)</sup> |[Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
+Fraction Asymptomatic cases | Dirichlet with mean 0.178<sup>[\[1\]](#dirichletfoootnote)</sup> |[Nishiura et al](https://www.ncbi.nlm.nih.gov/pubmed/32145466); [Mizumoto et al](https://www.eurosurveillance.org/content/10.2807/1560-7917.ES.2020.25.10.2000180#r13)|
+Fraction of mild cases (non-hospitalized) | Dirichlet with mean 1-sum(0.07, 0.02, 0.01, 0.178)<sup>[\[1\]](#dirichletfoootnote)</sup> | N/A|
 Population of Santa Cruz County | 273, 213| https://www.census.gov/quickfacts/santacruzcountycalifornia |
 
-<a name="dirichletfoootnote">1</a>: All 5 fractions are drawn from the same Dirichlet distribution. 
+<a name="dirichletfoootnote">[1]</a> All 5 fractions are drawn from the same Dirichlet distribution. 
 
 ## License
 
