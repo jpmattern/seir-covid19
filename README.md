@@ -36,3 +36,9 @@ Population of Santa Cruz County | 273, 213| https://www.census.gov/quickfacts/sa
 - Hospitalized COVID-19 patients have a shorter duration of their infectious period because they are less likely to expose other.      However, they likely will shed live virus longer, especially if immuno-compromised.
 - Assumes social distancing lowers the contact rate by 60%. However, lifting the shelter in place orders could increase the contact rate anywhere from 0 to 20%. The model incorporates this during the time Shelter-In-Place was implemented on March 16th and then amended on May 1st.
 - The model does not account for spatial or network patterns.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+
