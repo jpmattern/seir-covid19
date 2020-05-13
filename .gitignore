@@ -1,0 +1,9 @@
+*.swp
+*.rds
+.ipynb_checkpoints
+__pycache__
+data/*.csv
+*.xlsx
+Untitled*.ipynb
+stan_code/old*
+data/old*
