@@ -8,7 +8,7 @@ The model contains 9 compartments to divide COVID-19 cases into the asymptomatic
 
 The Jupyter notebook using data from Santa Cruz County can be found [here](seir_v8.ipynb), a template notebook can be found [here](notyet.ipynb).
 
-*NOTE:* 
+*NOTE:* If there have issues, questions or find a bug please create an issue in GitHub (above).
 
 ## Additional Assumptions of COVID-19 Model
 - The model's contact rate adjusts every 10 days using spline interpolation
