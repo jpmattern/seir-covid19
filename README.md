@@ -23,7 +23,7 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 
 ## Instruction for running the model
 
-The core of the model is written in [Stan](https://mc-stan.org/) and a [Jupyter notebook](https://jupyter.org/) is used for reading in data, running the model and visualizing its output. Installation instructions are provided [here](installation_instruction.ipynb). 
+The core of the model is written in [Stan](https://mc-stan.org/) and a [Jupyter notebook](https://jupyter.org/) is used for reading in data, running the model and visualizing its output. Installation instructions are provided [here](installation_instructions.ipynb). 
 
 In order to provide a new dataset or change the model parameters, edit the begining of the notebook where each input parameter and the required data files are described in detail.
 
