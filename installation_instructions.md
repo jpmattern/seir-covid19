@@ -1,6 +1,6 @@
-## Installation instructions
+# Installation instructions
 
-The Santa Cruz county COVID-19 model is written in [Stan](https://mc-stan.org/). It comes with a Jupyter notebook written in Python that performs some data processing and visualization. The instructions below provide basic guidance for installing Python, Jupyter notebooks, and pystan (the Python interface to Stan). 
+The Santa Cruz County COVID-19 model is written in [Stan](https://mc-stan.org/). It comes with a [Jupyter notebook](https://jupyter.org/) written in Python that performs some data processing and visualization. The instructions below provide basic guidance for installing Python, Jupyter notebooks, and [pystan](https://mc-stan.org/users/interfaces/pystan) (the Python interface to Stan). 
 
 *NOTE:* The Stan code for the model can also be run in R (using [RStan](https://mc-stan.org/users/interfaces/rstan)) but we do not provide a Jupyter notebook written in R.
 
