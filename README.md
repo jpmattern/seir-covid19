@@ -8,6 +8,8 @@ The model contains 9 compartments to divide COVID-19 cases into the asymptomatic
 
 The Jupyter notebook using data from Santa Cruz County can be found [here](seir_v8.ipynb), a template notebook can be found [here](notyet.ipynb).
 
+*NOTE:* 
+
 ## Additional Assumptions of COVID-19 Model
 - The model's contact rate adjusts every 10 days using spline interpolation
 - COVID-19 cases who recover gain short-term immunity.
@@ -15,9 +17,15 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 - COVID-19 hospitalization, ICU, and death rates calculated based on the overall age demographics of Santa Cruz County
 - Not everyone who tests positive for COVID-19 goes to the hospital.
 - COVID-19 cases only die within the hospital.
-- Hospitalized COVID-19 patients have a shorter duration of their infectious period because they are less likely to expose other.      However, they likely will shed live virus longer, especially if immuno-compromised.
+- Hospitalized COVID-19 patients have a shorter duration of their infectious period because they are less likely to expose other. However, they likely will shed live virus longer, especially if immuno-compromised.
 - Assumes social distancing lowers the contact rate by 60%. However, lifting the shelter in place orders could increase the contact rate anywhere from 0 to 20%. The model incorporates this during the time Shelter-In-Place was implemented on March 16th and then amended on May 1st.
 - The model does not account for spatial or network patterns.
+
+## Instruction for running the model
+
+The core of the model is written in [Stan](https://mc-stan.org/) and a [Jupyter notebook](https://jupyter.org/) is used for reading in data, running the model and visualizing its output. Installation instructions are provided [here](installation_instruction.ipynb). 
+
+In order to provide a new dataset or change the model parameters, edit the begining of the notebook where each input parameter and the required data files are described in detail.
 
 ## Parameters of COVID-19 model for Santa Cruz
 
