@@ -6,7 +6,7 @@ The model contains 9 compartments to divide COVID-19 cases into the asymptomatic
 
 ![model diagram](plots/seir_diagram.png)
 
-The Jupyter notebook using data from Santa Cruz County can be found [here](seir_v8.ipynb), a template notebook can be found [here](notyet.ipynb).
+The Jupyter notebook using data from Santa Cruz County can be found [here](seir_santa_cruz.ipynb), a template notebook can be found [here](seir_yard_template.ipynb).
 
 *NOTE:* If you have issues, questions or find a bug please create an issue in GitHub (above).
 
@@ -49,6 +49,11 @@ Fraction of mild cases (non-hospitalized) | Dirichlet with mean 1-sum(0.07, 0.02
 Population of Santa Cruz County | 273, 213| https://www.census.gov/quickfacts/santacruzcountycalifornia |
 
 <a name="dirichletfoootnote">[1]</a> All 5 fractions are drawn from the same Dirichlet distribution. 
+
+## Contributors
+
+ * Jann Paul Mattern [jpmattern](https://github.com/jpmattern)
+ * Mikala Caton [mtcaton](https://github.com/mtcaton)
 
 ## License
 
