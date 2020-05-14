@@ -1,6 +1,6 @@
 # The Santa Cruz County COVID-19 model
 
-The Santa Cruz County (SCZ) COVID-19 model is a time-discrete, stochastic SEIR model that uses Bayseian statistical methods, such as Hamiltonian Markov Chain Monte Carlo (MCMC) simulations, to forecast the COVID-19 pandemic in Santa Cruz County, California. The model requires a set of parameters, equations, and local data to help inform its simulations. The model is set to run 4,000 simulations and fine-tune the inputted parameters using the local data (confirmed COVID-19 hospitalizations, confirmed COVID-19 cases, and deaths). The model will project a range of different scenarios that fit the inputs provided and are displayed in the exported plots.
+The Santa Cruz County (SCZ) COVID-19 model is a time-discrete, stochastic SEIR model that uses Bayseian statistical methods, such as Hamiltonian Markov Chain Monte Carlo (MCMC) simulations, to forecast the COVID-19 pandemic in Santa Cruz County, California. The model requires a set of parameters, equations, and local data to help inform its simulations. The model is set to run 4,000 simulations and fine-tune the inputted parameters using the local data (confirmed COVID-19 hospitalizations, confirmed COVID-19 cases, and deaths). The model projects a range of different scenarios that fit the inputs provided and are displayed in the exported plots.
 
 The model contains 9 compartments to divide COVID-19 cases into the asymptomatic, mild, and moderate to severe illness, which better informs hospitalization and death projections (see diagram below). 
 
@@ -10,15 +10,15 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 
 *NOTE:* If you have issues, questions or find a bug please create an issue in GitHub (above).
 
-## Additional Assumptions of COVID-19 Model
-- The model's contact rate adjusts every 10 days using spline interpolation
+## Additional Assumptions of the SCZ COVID-19 Model
+- The model's contact rate adjusts every 10 days using spline interpolation.
 - COVID-19 cases who recover gain short-term immunity.
 - COVID-19 cases can be infectious 2 to 3 days prior to symptom onset.
-- COVID-19 hospitalization, ICU, and death rates calculated based on the overall age demographics of Santa Cruz County
+- COVID-19 hospitalization, ICU, and death rates are calculated based on the overall age demographics of Santa Cruz County.
 - Not everyone who tests positive for COVID-19 goes to the hospital.
 - COVID-19 cases only die within the hospital.
-- Hospitalized COVID-19 patients have a shorter duration of their infectious period because they are less likely to expose other. However, they likely will shed live virus longer, especially if immuno-compromised.
-- Assumes social distancing lowers the contact rate by 60%. However, lifting the shelter in place orders could increase the contact rate anywhere from 0 to 20%. The model incorporates this during the time Shelter-In-Place was implemented on March 16th and then amended on May 1st.
+- Hospitalized COVID-19 patients have a shorter duration of their infectious period because they are less likely to expose others. However, they likely will shed live virus longer, especially if immuno-compromised.
+- It assumes social distancing lowers the contact rate by 60%. However, lifting the shelter in place orders could increase the contact rate anywhere from 0 to 20%. The model incorporates this during the time Shelter-In-Place was implemented on March 16th and then amended on May 1st.
 - The model does not account for spatial or network patterns.
 
 ## Instruction for running the model
@@ -27,7 +27,7 @@ The core of the model is written in [Stan](https://mc-stan.org/) and a [Jupyter 
 
 In order to provide a new dataset or change the model parameters, edit the begining of the notebook where each input parameter and the required data files are described in detail.
 
-## Parameters of COVID-19 model for Santa Cruz
+## Parameters of COVID-19 model for Santa Cruz County
 
 All parameters listed below can be adjusted by the user.
 
