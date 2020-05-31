@@ -1,6 +1,6 @@
 # The Santa Cruz County COVID-19 model
 
-The Santa Cruz County (SCZ) COVID-19 model is a time-discrete, stochastic SEIR model that uses Bayseian statistical methods, such as Hamiltonian Markov Chain Monte Carlo (MCMC) simulations, to forecast the COVID-19 pandemic in Santa Cruz County, California. The model requires a set of parameters, equations, and local data to help inform its simulations. The model is set to run 4,000 simulations and fine-tune the inputted parameters using the local data (confirmed COVID-19 hospitalizations, confirmed COVID-19 cases, and deaths). The model projects a range of different scenarios that fit the inputs provided and are displayed in the exported plots.
+The Santa Cruz County (SCZ) COVID-19 model is a time-discrete, stochastic SEIR model that uses Bayesian statistical methods, such as Hamiltonian Markov Chain Monte Carlo (MCMC) simulations, to forecast the COVID-19 pandemic in Santa Cruz County, California. The model requires a set of parameters, equations, and local data to help inform its simulations. The model is set to run 4,000 simulations and fine-tune the inputted parameters using the local data (confirmed COVID-19 hospitalizations, confirmed COVID-19 cases, and deaths). The model projects a range of different scenarios that fit the inputs provided and are displayed in the exported plots.
 
 The model contains 9 compartments to divide COVID-19 cases into the asymptomatic, mild, and moderate to severe illness, which better informs hospitalization and death projections (see diagram below). 
 
