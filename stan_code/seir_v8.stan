@@ -140,7 +140,7 @@ transformed data {
     int nbeta_est = (itoday-1)/dknot + 3 - splinemode;
     int nbeta = nbeta_est + ninter*4 + splinemode;
 
-    real beta_knots[nbeta];
+    real knots_beta[nbeta];
     matrix[nt,nbeta+p-1] bsplines;
 
     // the alpha parameter for the Dirichlet distribution  
@@ -158,32 +158,32 @@ transformed data {
     // compute knots for beta b-splines
     
     print("itoday/dknot = ",itoday/dknot,", nbeta = ", nbeta)
-    beta_knots[1] = 1;
+    knots_beta[1] = 1;
     {
         int it = dknot;
         int ibeta = 2;
         real alpha_shape = 0.1; // must be between 0.0 and 0.5
         while (it < itoday){
-            beta_knots[ibeta] = it;
+            knots_beta[ibeta] = it;
             ibeta += 1;
             it += dknot;
         }
-        beta_knots[ibeta-1] = itoday - dknot;
-        beta_knots[ibeta] = itoday;
+        knots_beta[ibeta-1] = itoday - dknot;
+        knots_beta[ibeta] = itoday;
         ibeta += 1;
         
         // set knots for each intervention
         for (iinter in 1:ninter){
-            beta_knots[ibeta] = t_inter[iinter];
-            if (beta_knots[ibeta] <  beta_knots[ibeta-1]){
+            knots_beta[ibeta] = t_inter[iinter];
+            if (knots_beta[ibeta] <  knots_beta[ibeta-1]){
                 if (iinter == 1){
                     reject("Interventions are not allowed to be in the past (problem with intervention ",iinter,").")
                 }
                 reject("Interventions are not allowed to overlap (problem with intervention ",iinter,").")
             }
-            beta_knots[ibeta+1] = t_inter[iinter]+alpha_shape*len_inter[iinter];
-            beta_knots[ibeta+2] = t_inter[iinter]+(1.0-alpha_shape)*len_inter[iinter];
-            beta_knots[ibeta+3] = t_inter[iinter]+len_inter[iinter];
+            knots_beta[ibeta+1] = t_inter[iinter]+alpha_shape*len_inter[iinter];
+            knots_beta[ibeta+2] = t_inter[iinter]+(1.0-alpha_shape)*len_inter[iinter];
+            knots_beta[ibeta+3] = t_inter[iinter]+len_inter[iinter];
             ibeta += 4;
         }
     }
@@ -193,11 +193,11 @@ transformed data {
         t[i] = t[i-1] + 1.0;
     }
     
-    beta_knots[nbeta] = nt;
-    print("beta_knots = ", beta_knots)
+    knots_beta[nbeta] = nt;
+    print("knots_beta = ", knots_beta)
     
     // compute b-splines, now that knots are known
-    bsplines = compute_b_splines(nt, t, nbeta, beta_knots, p);
+    bsplines = compute_b_splines(nt, t, nbeta, knots_beta, p);
     #print("bsplines = ", bsplines)
 }
 parameters {
@@ -227,7 +227,7 @@ parameters {
 transformed parameters {
     matrix<lower=0.0>[9,nt] x;
     vector[nt] beta;
-    vector[nbeta+p-1] beta_control;
+    vector[nbeta+p-1] control_beta;
     real mu_Iobs[nt];
     real Rt[nt];
     {
@@ -281,26 +281,26 @@ transformed parameters {
         mu_Iobs[1] = I_cur * frac_tested; //defining first value of mu_Iobs for first time steps based on I true * fraction tested
        
         //////////////////////////////////////////
-        // fill beta_control
+        // fill control_beta
         for (ibeta in 1:nbeta_est){
-            beta_control[ibeta] = beta_est[ibeta];
+            control_beta[ibeta] = beta_est[ibeta];
         }
         if (splinemode == 2){
-            beta_control[nbeta_est+1] = beta_est[nbeta_est];
+            control_beta[nbeta_est+1] = beta_est[nbeta_est];
             ibetaoffset = nbeta_est + 1;
         } else {
             ibetaoffset = nbeta_est;
         }
         for (iinter in 1:ninter){
-            beta_control[ibetaoffset+4*iinter-3] = beta_control[ibetaoffset+4*iinter-4];
-            beta_control[ibetaoffset+4*iinter-2] = beta_control[ibetaoffset+4*iinter-4];
-            beta_control[ibetaoffset+4*iinter-1] = beta_control[ibetaoffset+4*iinter-4];
-            beta_control[ibetaoffset+4*iinter] = beta_control[ibetaoffset+4*iinter-1] * beta_change[iinter];
+            control_beta[ibetaoffset+4*iinter-3] = control_beta[ibetaoffset+4*iinter-4];
+            control_beta[ibetaoffset+4*iinter-2] = control_beta[ibetaoffset+4*iinter-4];
+            control_beta[ibetaoffset+4*iinter-1] = control_beta[ibetaoffset+4*iinter-4];
+            control_beta[ibetaoffset+4*iinter] = control_beta[ibetaoffset+4*iinter-1] * beta_change[iinter];
         }
         for (ibeta in nbeta:nbeta+p-1){
-            beta_control[ibeta] = beta_control[nbeta-1];
+            control_beta[ibeta] = control_beta[nbeta-1];
         }
-        beta = bsplines * beta_control;
+        beta = bsplines * control_beta;
         
         //////////////////////////////////////////
         // the SEIR model
@@ -467,6 +467,7 @@ generated quantities{
     for (iobs in 1:nobs){
         // dividing here by the cumulative number as well 
         // mu_Iobs[tobs[iobs]]/frac_tested is cumulative number of infectious
+        // resulting quantity is the cumulative number of observed infected divided by the cumulative number of infectious in the model
         fractested[iobs] = obs_I[iobs]/(mu_Iobs[tobs[iobs]]/frac_tested);
     }
     for (it in 1:nt){
