@@ -114,7 +114,7 @@ data {
     int<lower=1,upper=2> splinemode;
 
     //////////////////////////////////////////
-    // spine of order p_fractest for fraction tested
+    // spline of order p_fractest for fraction tested
     int nknots_fractest;
     int p_fractest;
     real knots_fractest[nknots_fractest];
@@ -453,7 +453,6 @@ model {
         frac_I[iage] ~ dirichlet(alpha_frac_I[:,iage]);
     }
 
-    //frac_tested ~ normal(mu_frac_tested, sigma_frac_tested); 
     control_fractest ~ normal(mu_fractest, sigma_fractest);
 
     //////////////////////////////////////////
