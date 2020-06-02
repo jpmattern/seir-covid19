@@ -95,9 +95,6 @@ data {
     
     real<lower=0.0> lambda_ini_exposed; // parameter for initial conditions of "exposed"
 
-    real<lower=0.0> mu_frac_tested;     // mean fraction of tested infectious
-    real<lower=0.0> sigma_frac_tested;  // sd fraction of tested infectious
-    
     real<lower=0.0> alpha_multiplier; 
     
     //////////////////////////////////////////
