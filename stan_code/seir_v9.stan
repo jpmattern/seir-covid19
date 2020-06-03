@@ -112,11 +112,11 @@ data {
 
     //////////////////////////////////////////
     // spline of order p_fractest for fraction tested
-    int nknots_fractest;
-    int p_fractest;
-    real knots_fractest[nknots_fractest];
-    real mu_fractest[nknots_fractest+p_fractest-1];
-    real sigma_fractest[nknots_fractest+p_fractest-1];
+    int nknots_fractest;                                // number of knots for fraction tested splines
+    int p_fractest;                                     // degree of fraction tested splines
+    real knots_fractest[nknots_fractest];               // knots for fraction tested splines
+    real mu_fractest[nknots_fractest+p_fractest-1];     // mean of fraction tested a spline control points
+    real sigma_fractest[nknots_fractest+p_fractest-1];  // sd of fraction tested a spline control points
 }
 transformed data {
     //assigning indices for state matrix x
