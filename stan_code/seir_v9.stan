@@ -398,7 +398,7 @@ transformed parameters {
             //////////////////////////////////////////
             // observed infected
             
-            mu_Iobs[it+1] = mu_Iobs[it] + newI_sum * fractest[it];
+            mu_Iobs[it+1] = mu_Iobs[it] + newI_sum * fractest[it+1];
             
             x[S,it+1] = sum(S_new);
             x[E,it+1] = sum(E_new);
