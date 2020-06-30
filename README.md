@@ -18,7 +18,6 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 - Not everyone who tests positive for COVID-19 goes to the hospital.
 - COVID-19 cases only die within the hospital.
 - Hospitalized COVID-19 patients have a shorter duration of their infectious period because they are less likely to expose others. However, they likely will shed live virus longer, especially if immuno-compromised.
-- It assumes social distancing lowers the contact rate by 60%. However, lifting the shelter in place orders could increase the contact rate anywhere from 0 to 20%. The model incorporates this during the time Shelter-In-Place was implemented on March 16th and then amended on May 1st.
 - The model does not account for spatial or network patterns.
 
 ## Instruction for running the model
