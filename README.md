@@ -32,22 +32,26 @@ All parameters listed below can be adjusted by the user.
 
 Parameter| Value and Distribution | Literature
 ---------|------------------------|-----------|
-Initial Contact Rate | normal(0.2, 0.02) | N/A|
+Initial Contact Rate | normal(0.2, 0.02)<sup>[\[1\]](#betafootnote)</sup> | N/A|
 Latent Period | normal(5, 2) | [Cascella et al](https://www.ncbi.nlm.nih.gov/books/NBK554776/); [Li et al](https://www.ncbi.nlm.nih.gov/books/NBK554776/) |
 Asymptomatic Infections Days to Recover | normal(7, 5) | [He et al](https://www.nature.com/articles/s41591-020-0869-5)|
 Mild Infections Days to Recover | normal(7,4)| [He et al](https://www.nature.com/articles/s41591-020-0869-5)|
 Days to Hospital| normal(5,1)| [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf)|
 Non-ICU Cases Days in Hospital |normal(7,1)|[Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf)|
 ICU Cases Days in Hospital | normal(16, 1)|[Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf)|
-Fraction Tested | normal(0.25, 0.025)|N/A|
-Fraction of moderate cases (Hospitalized but non-ICU) | Dirichlet with mean 0.07<sup>[\[1\]](#dirichletfoootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200)
-Fraction of severe cases (ICU and alive) | Dirichlet with mean 0.02<sup>[\[1\]](#dirichletfoootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
-Fraction of severe cases (ICU and dead) | Dirichlet with mean 0.01<sup>[\[1\]](#dirichletfoootnote)</sup> |[Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
-Fraction Asymptomatic cases | Dirichlet with mean 0.178<sup>[\[1\]](#dirichletfoootnote)</sup> |[Nishiura et al](https://www.ncbi.nlm.nih.gov/pubmed/32145466); [Mizumoto et al](https://www.eurosurveillance.org/content/10.2807/1560-7917.ES.2020.25.10.2000180#r13)|
-Fraction of mild cases (non-hospitalized) | Dirichlet with mean 1-sum(0.07, 0.02, 0.01, 0.178)<sup>[\[1\]](#dirichletfoootnote)</sup> | N/A|
+Fraction Tested | time-dependent<sup>[\[2\]](#fractionfootnote)</sup> |N/A|
+Fraction of moderate cases (Hospitalized but non-ICU) | Dirichlet with mean 0.07<sup>[\[3\]](#dirichletfootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200)
+Fraction of severe cases (ICU and alive) | Dirichlet with mean 0.02<sup>[\[3\]](#dirichletfootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
+Fraction of severe cases (ICU and dead) | Dirichlet with mean 0.01<sup>[\[3\]](#dirichletfootnote)</sup> |[Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
+Fraction Asymptomatic cases | Dirichlet with mean 0.178<sup>[\[3\]](#dirichletfootnote)</sup> |[Nishiura et al](https://www.ncbi.nlm.nih.gov/pubmed/32145466); [Mizumoto et al](https://www.eurosurveillance.org/content/10.2807/1560-7917.ES.2020.25.10.2000180#r13)|
+Fraction of mild cases (non-hospitalized) | Dirichlet with mean 1-sum(0.07, 0.02, 0.01, 0.178)<sup>[\[3\]](#dirichletfootnote)</sup> | N/A|
 Population of Santa Cruz County | 273, 213| https://www.census.gov/quickfacts/santacruzcountycalifornia |
 
-<a name="dirichletfoootnote">[1]</a> All 5 fractions are drawn from the same Dirichlet distribution. 
+<a name="betafootnote">[1]</a> A time-dependent contact rate is then estimated from the data using an AR(1) process and spline interpolation. 
+
+<a name="fractionfootnote">[2]</a> Currently increased over time using key dates, see [notebook](seir_santa_cruz.ipynb) for details. 
+
+<a name="dirichletfootnote">[3]</a> All 5 fractions are drawn from the same Dirichlet distribution. 
 
 ## Contributors
 
