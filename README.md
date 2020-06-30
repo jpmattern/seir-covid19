@@ -32,7 +32,7 @@ All parameters listed below can be adjusted by the user.
 
 Parameter| Value and Distribution | Literature
 ---------|------------------------|-----------|
-Contact Rate | exponential (.2, 30) | N/A|
+Initial Contact Rate | normal(0.2, 0.02) | N/A|
 Latent Period | normal(5, 2) | [Cascella et al](https://www.ncbi.nlm.nih.gov/books/NBK554776/); [Li et al](https://www.ncbi.nlm.nih.gov/books/NBK554776/) |
 Asymptomatic Infections Days to Recover | normal(7, 5) | [He et al](https://www.nature.com/articles/s41591-020-0869-5)|
 Mild Infections Days to Recover | normal(7,4)| [He et al](https://www.nature.com/articles/s41591-020-0869-5)|
