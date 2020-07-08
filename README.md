@@ -11,7 +11,7 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 **Note:** If you have issues, questions or find a bug please create an issue in GitHub (above).
 
 ## Additional Assumptions of the SCZ COVID-19 Model
-- The model's contact rate adjusts every 10 days using spline interpolation.
+- The model's contact rate adjusts every 5 days using spline interpolation.
 - COVID-19 cases who recover gain short-term immunity.
 - COVID-19 cases can be infectious 2 to 3 days prior to symptom onset.
 - COVID-19 hospitalization, ICU, and death rates are calculated based on the overall age demographics of Santa Cruz County.
