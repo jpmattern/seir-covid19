@@ -20,6 +20,13 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 - Hospitalized COVID-19 patients have a shorter duration of their infectious period because they are less likely to expose others. However, they likely will shed live virus longer, especially if immuno-compromised.
 - The model does not account for spatial or network patterns.
 
+## Model updates
+
+### 2020-07-21:
+ - Priors for model misfit parameters (`lambda_Iobs`, `lambda_Hmod`, `lambda_Hicu`, `lambda_Rmort`) can now be set by the user.
+ - Santa Cruz and default parametrization now use a tighter fit to mortality data and a looser fit to case count.
+ - Mean of the prior for rate of mortality has been changed from 1% to 0.5% based on observed mortality in Santa Cruz County.  
+
 ## Instruction for running the model
 
 The core of the model is written in [Stan](https://mc-stan.org/) and a [Jupyter notebook](https://jupyter.org/) is used for reading in data, running the model and visualizing its output. Installation instructions are provided [here](installation_instructions.md). 
@@ -42,9 +49,9 @@ ICU Cases Days in Hospital | normal(16, 1)|[Ferguson et al](https://www.imperial
 Fraction Tested | time-dependent<sup>[\[2\]](#fractionfootnote)</sup> |N/A|
 Fraction of moderate cases (Hospitalized but non-ICU) | Dirichlet with mean 0.07<sup>[\[3\]](#dirichletfootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200)
 Fraction of severe cases (ICU and alive) | Dirichlet with mean 0.02<sup>[\[3\]](#dirichletfootnote)</sup> | [Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
-Fraction of severe cases (ICU and dead) | Dirichlet with mean 0.01<sup>[\[3\]](#dirichletfootnote)</sup> |[Stanford model](https://surf.stanford.edu/covid-19-tools/covid-19/); [Ferguson et al](https://www.imperial.ac.uk/media/imperial-college/medicine/sph/ide/gida-fellowships/Imperial-College-COVID19-NPI-modelling-16-03-2020.pdf); [Verity et al](https://www.thelancet.com/journals/laninf/article/PIIS1473-3099(20)30243-7/fulltext#seccestitle200) |
+Fraction of severe cases (ICU and dead) | Dirichlet with mean 0.005<sup>[\[3\]](#dirichletfootnote)</sup> |N/A|
 Fraction Asymptomatic cases | Dirichlet with mean 0.178<sup>[\[3\]](#dirichletfootnote)</sup> |[Nishiura et al](https://www.ncbi.nlm.nih.gov/pubmed/32145466); [Mizumoto et al](https://www.eurosurveillance.org/content/10.2807/1560-7917.ES.2020.25.10.2000180#r13)|
-Fraction of mild cases (non-hospitalized) | Dirichlet with mean 1-sum(0.07, 0.02, 0.01, 0.178)<sup>[\[3\]](#dirichletfootnote)</sup> | N/A|
+Fraction of mild cases (non-hospitalized) | Dirichlet with mean 1-sum(0.07, 0.02, 0.005, 0.178)<sup>[\[3\]](#dirichletfootnote)</sup> | N/A|
 Population of Santa Cruz County | 273, 213| https://www.census.gov/quickfacts/santacruzcountycalifornia |
 
 <a name="betafootnote">[1]</a> A time-dependent contact rate is then estimated from the data using an AR(1) process and spline interpolation. 
