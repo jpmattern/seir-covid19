@@ -94,6 +94,12 @@ data {
     real<lower=0.0> sigma_beta1;    // sd initial beta estimate
     
     real<lower=0.0> lambda_ini_exposed; // parameter for initial conditions of "exposed"
+   
+    // hierarchical priors for standard deviation of model observation misfit for each observation type
+    real<lower=0.0> lambda_Iobs;    // parameter for Iobs misfit
+    real<lower=0.0> lambda_Hmod;    // parameter for Hmod misfit
+    real<lower=0.0> lambda_Hicu;    // parameter for Hicu misfit
+    real<lower=0.0> lambda_Rmort;   // parameter for Rmort misfit
 
     real<lower=0.0> alpha_multiplier; 
     
@@ -205,7 +211,7 @@ transformed data {
     
     // compute b-splines, now that knots are known
     bsplines = compute_b_splines(nt, t, nbeta, knots_beta, p);
-    #print("bsplines = ", bsplines)
+    //print("bsplines = ", bsplines)
 
     //////////////////////////////////////////
     // compute b-splines for fraction tested
@@ -455,11 +461,11 @@ model {
     //////////////////////////////////////////
     // fitting observations
     
-    sigma_Iobs ~ exponential(1.0);
-    sigma_Rmort ~ exponential(1.0);
+    sigma_Iobs ~ exponential(lambda_Iobs);
+    sigma_Rmort ~ exponential(lambda_Rmort);
     
-    sigma_Hmod ~ exponential(1.0);
-    sigma_Hicu ~ exponential(1.0);
+    sigma_Hmod ~ exponential(lambda_Hmod);
+    sigma_Hicu ~ exponential(lambda_Hicu);
     {
         real tmp;
         for (iobs in 1:nobs){
