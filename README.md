@@ -22,6 +22,10 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 
 ## Model updates
 
+### 2020-08-09:
+ - Added temporary disclaimer to the plots stating that due to a problem with the State of California’s CalREDIE reporting system, cases have been underreported and projected results likely represent underestimates.
+ - This problem is affecting the data being fed into the recent projections, not the model code.
+
 ### 2020-07-21:
  - Priors for model misfit parameters (`lambda_Iobs`, `lambda_Hmod`, `lambda_Hicu`, `lambda_Rmort`) can now be set by the user.
  - Santa Cruz and default parametrization now use a tighter fit to mortality data and a looser fit to case count.
