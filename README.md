@@ -22,6 +22,9 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 
 ## Model updates
 
+### 2020-08-22:
+ - Removed temporary disclaimer from 2020-08-09.
+
 ### 2020-08-09:
  - Added temporary disclaimer to the plots stating that due to a problem with the State of California’s CalREDIE reporting system, cases have been underreported and projected results likely represent underestimates.
  - This problem is affecting the data being fed into the recent projections, not the model code.
