@@ -22,6 +22,13 @@ The Jupyter notebook using data from Santa Cruz County can be found [here](seir_
 
 ## Model updates
 
+### 2020-09-03:
+ - The model is now using the earliest known date of infection for the case data (also known as episode date). Due to laboratory reporting delays and the transition to episode date, the latest entries in a case count file are likely to be underestimates. Existing daily case counts from the week prior are often updated with new data each day. For the time being, the last entries are not added to the case count file when running the Santa Cruz County model to minimize the impact of this bias.
+
+### 2020-09-02:
+ - In preparation for switching from case counts based on the date lab result were received, to the earliest known date of infection (now reported on the [Santa Cruz County dashboard](http://santacruzhealth.org/HSAHome/HSADivisions/PublicHealth/CommunicableDiseaseControl/CoronavirusHome.aspx)) to fit the model, case count and death data are no longer required to use the same dates and can be specified in separate files.
+ - Improved data input allows more flexible specification of how to read data from csv or Excel data files. Non-csv text files are no longer supported.
+
 ### 2020-08-22:
  - Removed temporary disclaimer from 2020-08-09.
 
