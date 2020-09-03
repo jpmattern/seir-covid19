@@ -57,23 +57,29 @@ functions {
 data {
     //////////////////////////////////////////
     // data required to run model  
-    int<lower=0> nobs;              // number of timesteps with observations
-    int tobs[nobs];                 // obs times; this is a vector
-    real<lower=0> obs_I[nobs];      // observations num infected. this is a vector
-    real<lower=0> obs_Rmort[nobs];  // observations num deaths. this is a vector
+    int<lower=0> nobs_I;                // number of timesteps with observations
+    int tobs_I[nobs_I];                 // associated obs times
+    real<lower=0> obs_I[nobs_I];        // observations cumulative number of infected
 
-    int<lower=0> nhobs;             // number of timesteps with observations
-    int thobs[nhobs];               // obs times; this is a vector
-    real<lower=0> obs_Hmod[nhobs];  // observations num non-icu hospitalized; this is a vector
-    real<lower=0> obs_Hicu[nhobs];  // observations num icu hospitalized; this is a vector
+    int<lower=0> nobs_Rmort;            // number of timesteps with number of deaths observations
+    int tobs_Rmort[nobs_Rmort];         // associated obs times
+    real<lower=0> obs_Rmort[nobs_Rmort];// observations cumulative number of deaths
+
+    int<lower=0> nobs_Hmod;             // number of timesteps with non-ICU hospitalization observations
+    int tobs_Hmod[nobs_Hmod];           // associated obs times
+    real<lower=0> obs_Hmod[nobs_Hmod];  // observations current number of non-ICU hospitalized
+
+    int<lower=0> nobs_Hicu;             // number of timesteps with ICU hospitalization observations
+    int tobs_Hicu[nobs_Hicu];           // associated obs times
+    real<lower=0> obs_Hicu[nobs_Hicu];  // observations current number of ICU hospitalized
     
-    int<lower=0> nt;                // number of time steps
-    int<lower=1> nage;              // number of age groups in the model
-    vector[nage] npop;              // total population for each age group
-    vector[nage] frac_hosp;         // ICU + non-ICU
-    vector[nage] frac_icu;          // ICU
-    vector[nage] frac_mort;         // mortality for each age group
-    vector[nage] frac_asym;         // fraction of asymptomatic
+    int<lower=0> nt;                    // number of time steps
+    int<lower=1> nage;                  // number of age groups in the model
+    vector[nage] npop;                  // total population for each age group
+    vector[nage] frac_hosp;             // ICU + non-ICU
+    vector[nage] frac_icu;              // ICU
+    vector[nage] frac_mort;             // mortality for each age group
+    vector[nage] frac_asym;             // fraction of asymptomatic
     
     //////////////////////////////////////////
     // prior parameter distributions
@@ -468,31 +474,33 @@ model {
     sigma_Hicu ~ exponential(lambda_Hicu);
     {
         real tmp;
-        for (iobs in 1:nobs){
-            tmp = (obs_I[iobs]-mu_Iobs[tobs[iobs]])/sigma_Iobs;
+        for (iobs in 1:nobs_I){
+            tmp = (obs_I[iobs]-mu_Iobs[tobs_I[iobs]])/sigma_Iobs;
             tmp ~ std_normal();
-            
-            tmp = (obs_Rmort[iobs]-x[Rmort,tobs[iobs]])/sigma_Rmort;
+        }    
+        for (iobs in 1:nobs_Rmort){
+            tmp = (obs_Rmort[iobs]-x[Rmort,tobs_Rmort[iobs]])/sigma_Rmort;
             tmp ~ std_normal();
         }
-        for (iobs in 1:nhobs){
-            tmp = (obs_Hmod[iobs]-x[Hmod,thobs[iobs]])/sigma_Hmod;
+        for (iobs in 1:nobs_Hmod){
+            tmp = (obs_Hmod[iobs]-x[Hmod,tobs_Hmod[iobs]])/sigma_Hmod;
             tmp ~ std_normal();
-
-            tmp = (obs_Hicu[iobs]-x[Hicu,thobs[iobs]])/sigma_Hicu;
+        }
+        for (iobs in 1:nobs_Hicu){
+            tmp = (obs_Hicu[iobs]-x[Hicu,tobs_Hicu[iobs]])/sigma_Hicu;
             tmp ~ std_normal();
         }
     }
 }
 generated quantities{
-    real fractested[nobs];
+    real fractested[nobs_I];
     real hospitalized[nt];
     real obs_I_sim[nt];
-    for (iobs in 1:nobs){
+    for (iobs in 1:nobs_I){
         // dividing here by the cumulative number as well 
-        // mu_Iobs[tobs[iobs]]/fractest[tobs[iobs]] is cumulative number of infectious
+        // mu_Iobs[tobs_I[iobs]]/fractest[tobs_I[iobs]] is cumulative number of infectious
         // resulting quantity is the cumulative number of observed infected divided by the cumulative number of infectious in the model
-        fractested[iobs] = obs_I[iobs]/(mu_Iobs[tobs[iobs]]/fractest[tobs[iobs]]);
+        fractested[iobs] = obs_I[iobs]/(mu_Iobs[tobs_I[iobs]]/fractest[tobs_I[iobs]]);
     }
     for (it in 1:nt){
         hospitalized[it] = x[Hmod,it] + x[Hicu,it];
