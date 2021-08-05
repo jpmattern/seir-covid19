@@ -5,3 +5,4 @@ __pycache__
 Untitled*.ipynb
 stan_code/old*
 data/old*
+local_*
