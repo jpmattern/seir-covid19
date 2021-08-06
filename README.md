@@ -1,6 +1,6 @@
 # The Santa Cruz County COVID-19 model
 
-**Note:** Because the latest versions of the model have been fit to age-structured data, part of which are not publicly available, we have not added recent versions of the model here. We want to change that and provide more frequent updates of the model code and its projections for Santa Cruz County. To ensure HIPAA compliance, we are not adding the data files to this repository for now.
+**Note:** Because the latest versions of the model have been fit to age-structured data, part of which are not publicly available, we have not added recent versions of the model here. We want to change that and provide more frequent updates of the model code. To ensure HIPAA compliance, we are not adding the data files to this repository for now. For the most recent projections, see the [Santa Cruz County dashboard](http://santacruzhealth.org/HSAHome/HSADivisions/PublicHealth/CommunicableDiseaseControl/CoronavirusHome.aspx)).
 
 The Santa Cruz County (SCZ) COVID-19 model is a time-discrete, stochastic SEIR model that uses Bayesian statistical methods, such as Hamiltonian Markov Chain Monte Carlo (MCMC) simulations, to forecast the COVID-19 pandemic in Santa Cruz County, California. The model requires a set of parameters, equations, and local data to help inform its simulations. The model is set to run 4,000 simulations and fine-tune the inputted parameters using the local data (confirmed COVID-19 hospitalizations, confirmed COVID-19 cases, and deaths). The model projects a range of different scenarios that fit the inputs provided and are displayed in the exported plots.
 
@@ -8,7 +8,7 @@ The model contains 11 compartments to divide COVID-19 cases into the asymptomati
 
 ![model diagram](plots/seir_diagram.png)
 
-The Jupyter notebook using data from Santa Cruz County can be found [here](seir_santa_cruz.ipynb), a template notebook can be found [here](seir_template.ipynb).
+The Jupyter template notebook can be found [here](seir_template.ipynb).
 
 **Note:** If you have issues, questions or find a bug please create an issue in GitHub (above).
 
@@ -77,7 +77,7 @@ Population of Santa Cruz County | 273, 213| https://www.census.gov/quickfacts/sa
 
 <a name="betafootnote">[1]</a> A time-dependent contact rate is then estimated from the data using an AR(1) process and spline interpolation. 
 
-<a name="fractionfootnote">[2]</a> Currently increased over time using key dates, see [notebook](seir_santa_cruz.ipynb) for details. 
+<a name="fractionfootnote">[2]</a> Currently increased over time using key dates, see [old notebook](v9/seir_santa_cruz.ipynb) for details. 
 
 <a name="dirichletfootnote">[3]</a> All 5 fractions are drawn from the same Dirichlet distribution. 
 
