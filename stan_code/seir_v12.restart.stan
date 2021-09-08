@@ -365,6 +365,14 @@ transformed parameters {
                 frac_mort =     10^(frac_mort_i45 +     (age[iage]-45.0) * mu_frac_mort_slope);
                 // rest defaults to mild
                 frac_mild = 1.0-(frac_asym[iage] + frac_hospmild + frac_iculive + frac_mort);
+                if (frac_mild < 0.0){
+                    // should only happen during initialization
+                    tmp = frac_asym[iage] + frac_hospmild + frac_iculive + frac_mort;
+                    frac_mild = 0.0;
+                    frac_hospmild = frac_hospmild / tmp;
+                    frac_iculive = frac_iculive / tmp;
+                    frac_mort = frac_mort / tmp;
+                }
 
                 // 1: asym, 2: mild, 3: hosp (non-ICU), 4: non-mort ICU, 5: mort ICU
                 frac_I[iage,1] = frac_asym[iage];
@@ -637,14 +645,6 @@ model {
     frac_hospmild_slope ~ normal(mu_frac_hospmild_slope, sigma_frac_hospmild_slope);
     frac_iculive_slope ~ normal(mu_frac_iculive_slope, sigma_frac_iculive_slope);
     frac_mort_slope ~ normal(mu_frac_mort_slope, sigma_frac_mort_slope);
-
-    // early rejection at last age
-    if ((10^(frac_hospmild_i45 + (age[nage]-45.0) * frac_hospmild_slope) +
-         10^(frac_iculive_i45 +  (age[nage]-45.0) * frac_iculive_slope) +
-         10^(frac_mort_i45 +     (age[nage]-45.0) * frac_mort_slope) +
-         frac_asym[nage]) > 1.0){
-        reject("Invalid fractions.")
-    }
 
     sigma_beta ~ exponential(30.0);
     beta_est[:,1] ~ normal(mu_beta1, sigma_beta1);
