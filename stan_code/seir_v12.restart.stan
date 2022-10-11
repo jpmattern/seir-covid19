@@ -360,9 +360,9 @@ transformed parameters {
             real frac_mild;
 
             for (iage in 1:nage){
-                frac_hospmild = 10^(frac_hospmild_i45 + (age[iage]-45.0) * mu_frac_hospmild_slope);
-                frac_iculive =  10^(frac_iculive_i45 +  (age[iage]-45.0) * mu_frac_iculive_slope);
-                frac_mort =     10^(frac_mort_i45 +     (age[iage]-45.0) * mu_frac_mort_slope);
+                frac_hospmild = 10^(frac_hospmild_i45 + (age[iage]-45.0) * frac_hospmild_slope);
+                frac_iculive =  10^(frac_iculive_i45 +  (age[iage]-45.0) * frac_iculive_slope);
+                frac_mort =     10^(frac_mort_i45 +     (age[iage]-45.0) * frac_mort_slope);
                 // rest defaults to mild
                 frac_mild = 1.0-(frac_asym[iage] + frac_hospmild + frac_iculive + frac_mort);
                 if (frac_mild < 0.0){
